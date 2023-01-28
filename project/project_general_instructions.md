@@ -1,4 +1,4 @@
-# Project Instructions Machine Learning for Natural Language Processing 2022
+# Project Instructions Machine Learning for Natural Language Processing 2023
 
 This project will be the total of your final grade. I expect that you invest time to prepare it.
 
