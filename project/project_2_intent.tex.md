@@ -10,8 +10,8 @@ a supervized manner. DA and Emotion have been particularly usefull for training 
 
 Problem Statement:
 
-We start by introducing the notations. We have a set $D$ of contexts (truncated conversations), i.e., $D$
-= (C_{1},C_2,.,C_|D|). Each context $C_i$ is composed of utterances $u$, i.e $C_i= (
+We start by introducing the notations. We have a set $D$ of contexts (truncated conversations), i.e., $$D
+= (C_{1},C_2,.,C_|D|)$$. Each context $C_i$ is composed of utterances $u$, i.e $C_i= (
 u^{L_1}_1,u^{L_2}_2,.,u^{L_{|C_i|}}_{|C_i|})$ where $L_i$ is the language of utterance $u_i$. At the lowest level, each
 utterance $u_i$ can be seen as a sequence of tokens, i.e $u^{L_i}_i = (\omega^i_1, \omega^i_2, \dots, \omega^i_{|u_i|})
 $. For \texttt{DA} classification $y_i$ is the unique dialog act tag associated to $u_i$. In our setting, we work with a
