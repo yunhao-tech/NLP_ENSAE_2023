@@ -17,3 +17,13 @@ Mrs. Charlotte Claye <charlotte.claye@scientalab.com>
 Mr. HERANVAL Antoine <Antoine.HERANVAL@ensae.fr>
 
 Soumm Michaël <michael.soumm@ensae.fr>
+
+## Classes
+
+Currently, is available:
+1. The Basics of NLP
+
+
+## Lab Session
+1. Describe Statistically large scale corpora
+
