@@ -2,7 +2,7 @@
 
 Here you will find all the necessary ressourced for the class.
 
-Main Instructor: Pierre COLOMBO
+Main Instructor: Pierre COLOMBO <colombo.pierre@gmail.com>
 
 TA: 
 
@@ -14,4 +14,4 @@ Mrs. Charlotte Claye <charlotte.claye@scientalab.com>
 
 Mr. HERANVAL Antoine <Antoine.HERANVAL@ensae.fr>
 
-Soumm Michaël <michael.soumm@ensae.fr>,
+Soumm Michaël <michael.soumm@ensae.fr>
