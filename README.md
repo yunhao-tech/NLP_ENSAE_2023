@@ -1,6 +1,6 @@
 # NLP_ENSAE_2023: 
 
-Here you will find all the necessary ressourced for the class.
+Here you will find all the necessary ressourced for the class: Machine Learning for Natural Language Processing
 
 ## Who we are?
 
