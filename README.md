@@ -2,9 +2,11 @@
 
 Here you will find all the necessary ressourced for the class.
 
+## Who we are?
+
 Main Instructor: Pierre COLOMBO <colombo.pierre@gmail.com>
 
-TA: 
+TAs: 
 
 Mr. Manuel Faysse <manuel.fay@gmail.com>
 
