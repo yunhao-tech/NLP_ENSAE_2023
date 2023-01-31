@@ -12,15 +12,15 @@ Paper submitted + code released:
 
 ### Detailed Dates
 
-1. Before March 1st, 8:00 pm: Register
+1. Before February 14st, 8:00 pm: Register
    here https://docs.google.com/spreadsheets/d/13jmRCWlw7yyUyu5CDePeLeHr4Dfggd9iJziBRXOQDEY/edit?usp=sharing
 
-2. By Saturday, April 24, 8:00 am: Share the final paper (on overleaf) with us for review.
+2. By Saturday, March 4th, 8:00 am: Share the final paper (on overleaf) with us for review.
 
-3. By Monday April: We will share with you our feedback, incoporate it and submit your paper, with code link
+3. By Monday, March 7th : We will share with you our feedback, incoporate it and submit your paper, with code link
    on [Openreview](https://openreview.net/).
 
-4. By Sunday: your paper should be upload openreview. Share the link with us for the final grade.
+4. By Saturday, March 11th: your paper should be upload openreview. Share the link with us for the final grade.
 
 NB: For each team, I expect one mail confirming that you did each step of the process with your partner as CC.
 
