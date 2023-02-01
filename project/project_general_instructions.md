@@ -4,15 +4,15 @@ This project will be the total of your final grade. I expect that you invest tim
 
 ## Important Dates
 
-Registration Deadline: Tuesday March 1st 8pm
+Registration Deadline: February 14th 8pm
 
-Overleaf shared: Sunday April 24th 8pm
+Overleaf shared: Saturday, March 4th 8pm
 
-Paper submitted + code released:
+Paper submitted + code released: Saturday, March 11th
 
 ### Detailed Dates
 
-1. Before February 14st, 8:00 pm: Register
+1. Before February 14th, 8:00 pm: Register
    here https://docs.google.com/spreadsheets/d/13jmRCWlw7yyUyu5CDePeLeHr4Dfggd9iJziBRXOQDEY/edit?usp=sharing
 
 2. By Saturday, March 4th, 8:00 am: Share the final paper (on overleaf) with us for review.
