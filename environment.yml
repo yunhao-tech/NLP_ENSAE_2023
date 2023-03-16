@@ -1,0 +1,13 @@
+name: nlp
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python==3.9.0
+  - numpy>=1.19.2
+  - tqdm>=4.56.0
+  - pytorch==1.12.0
+  - cudatoolkit=10.2
+  - transformers
+  - datasets
