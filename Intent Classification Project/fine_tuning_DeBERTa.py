@@ -9,7 +9,6 @@ def get_dataLoader(name_dataset='dyda_da', batch_size=64):
   dataset = load_dataset('silicone', name_dataset, split='train')
   dataset_val = load_dataset('silicone', name_dataset, split='validation')
   dataset_test = load_dataset('silicone', name_dataset, split='test')
-
   training_loader = DataLoader(dataset, batch_size=batch_size, num_workers=2, shuffle=True, drop_last=True)
   val_loader = DataLoader(dataset_val, batch_size=batch_size, num_workers=2, shuffle=True, drop_last=True)
   test_loader = DataLoader(dataset_test, batch_size=batch_size, num_workers=2, shuffle=True, drop_last=True)
@@ -60,7 +59,6 @@ def train(nb_epochs=10, name_dataset='dyda_da', batch_size=32, patience=2):
               loss.backward() # backward propagation
               torch.nn.utils.clip_grad_norm_(my_model.parameters(), 1.0) # prevent exploding gradient 
               optimizer.step() # update parameters
-              
               output = torch.argmax(F.softmax(output, dim=1), dim=1)
               losses.append(loss.item())
               accuracy = torch.sum(output == label).item() / len(label)
@@ -80,17 +78,12 @@ def train(nb_epochs=10, name_dataset='dyda_da', batch_size=32, patience=2):
       if val_acc >= best_validation_acc:
           best_validation_acc = val_acc
           print("Validation accuracy improved, reset p = 0")
-          # torch.save({
-          #   'model_state_dict': my_model.state_dict(),
-          #   'optimizer_state_dict': optimizer.state_dict(),
-          #   }, f"./best_deberta_{name_dataset}.pt")
           p = 0
       else:
         p += 1
         if p == patience:
           print("Validation accuracy did not improve for {} epochs, stopping training...".format(patience))
           break
-
   # torch.save({
   #     'model_state_dict': my_model.state_dict(),
   #     'optimizer_state_dict': optimizer.state_dict(),
