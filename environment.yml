@@ -10,9 +10,9 @@ dependencies:
   - nltk
   - gensim
   - spacy
-  - string
   - pytorch
   - torchinfo
   - transformers
   - datasets
   - termcolor
+  - ipykernel
