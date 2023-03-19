@@ -73,7 +73,7 @@ def fine_tune_prediction(model, tokenizer, optimizer, epochs, name_dataset='dyda
     print(f"Validation: Utterance classification Accuracy: {100 * val_acc :3.2f}%")
   print("Training finished...")
   test_acc = evaluate_acc(model, test_loader, tokenizer, name_dataset)
-  print(f"Validation: Utterance classification Accuracy: {100 * test_acc :3.2f}%")
+  print(f"Test: Utterance classification Accuracy: {100 * test_acc :3.2f}%")
   
 
 def evaluate_acc(model, loader, tokenizer, name_dataset):
@@ -97,4 +97,4 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("diwank/silicone-deberta-pair")
     model = AutoModelForSequenceClassification.from_pretrained("diwank/silicone-deberta-pair").to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=2e-3)
-    fine_tune_prediction(model, tokenizer, optimizer, epochs=3, name_dataset='dyda_da')
+    fine_tune_prediction(model, tokenizer, optimizer, epochs=10, name_dataset='dyda_da')

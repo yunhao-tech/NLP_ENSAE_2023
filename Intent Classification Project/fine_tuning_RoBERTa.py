@@ -1,4 +1,6 @@
 from tqdm.auto import tqdm
+import numpy as np
+import pandas as pd
 import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
@@ -38,7 +40,6 @@ class MyModel(torch.nn.Module):
   
 
 def train(nb_epochs=10, name_dataset='dyda_da', batch_size=32, patience=2):
-
   train_loader, val_loader, test_loader = get_dataLoader(name_dataset=name_dataset, batch_size=batch_size)
   best_validation_acc = 0.0
   val_acc_list = []
@@ -58,8 +59,7 @@ def train(nb_epochs=10, name_dataset='dyda_da', batch_size=32, patience=2):
               loss = criterion(output, label)
               loss.backward() # backward propagation
               torch.nn.utils.clip_grad_norm_(my_model.parameters(), 1.0) # prevent exploding gradient 
-              optimizer.step() # update parameters
-              
+              optimizer.step() # update parameters  
               output = torch.argmax(F.softmax(output, dim=1), dim=1)
               losses.append(loss.item())
               accuracy = torch.sum(output == label).item() / len(label)
@@ -83,12 +83,10 @@ def train(nb_epochs=10, name_dataset='dyda_da', batch_size=32, patience=2):
         if p == patience:
           print("Validation accuracy did not improve for {} epochs, stopping training...".format(patience))
           break
-
   print("Done")
   return val_loss_list, val_acc_list
 
 def evaluate(data_loader):
-  
   my_model.eval()
   losses = []
   correct = 0
@@ -104,27 +102,53 @@ def evaluate(data_loader):
     total += len(label)
   return correct/total, sum(losses)/len(losses)
 
+def plot_confusion_matrix(model, name_dataset):
+  dataset_test = load_dataset('silicone', name_dataset, split='test')
+  test_loader = DataLoader(dataset_test, batch_size=32, num_workers=2)
+  labels = []
+  preds = []
+  for data in test_loader:
+    input = tokenizer(data['Utterance'], return_tensors="pt", padding='max_length', max_length=30, truncation=True).to(device)
+    label = data['Label']
+    output = model.forward(input)
+    output = torch.argmax(F.softmax(output, dim=1), dim=1)
+    output = output.cpu().detach().numpy()
+    preds.append(output)
+    labels.append(label.numpy())
+  names = list(np.unique(np.array(dataset_test['Sentiment'])))
+  cm = confusion_matrix(np.concatenate(labels).ravel(), np.concatenate(preds).ravel())
+  df_cm = pd.DataFrame(cm, index=names, columns=names)
+  sn.set(font_scale=1)
+  sn.heatmap(df_cm, annot=True, annot_kws={"size": 8}, cmap='coolwarm', linewidth=0.5, fmt="")
+  plt.xlabel('Preds', fontsize=14)
+  plt.ylabel('True', fontsize=14)
+  plt.savefig(f'FineTuned_RoBERTa_{name_dataset}_confusion_matrix.png', dpi=300)
 
 if __name__ == "__main__":
+    from sklearn.metrics import *
+    import matplotlib.pyplot as plt
+    import seaborn as sn
     import pickle
     import os
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Current device is {device}")
-    tasks = ["meld_e", "meld_s", "sem", "maptask", "dyda_da"]
-    nums_class = [7, 3, 3, 12, 4]
-    # num_class, task = 4, "dyda_da"
+    # tasks = ["meld_e", "meld_s", "sem", "maptask", "dyda_da"]
+    # nums_class = [7, 3, 3, 12, 4]
+    num_class, task = 3, "sem"
     tokenizer = AutoTokenizer.from_pretrained("roberta-base")
-    for num_class, task in zip(nums_class, tasks):
-      model = RobertaModel.from_pretrained("roberta-base")
-      my_model = MyModel(trained_transformer=model, num_class=num_class, fine_tune_whole=True).to(device)
-      my_model = my_model.double()
-      criterion = torch.nn.CrossEntropyLoss()
-      optimizer = torch.optim.Adam(my_model.parameters(), lr=2e-5, eps=1e-6)
-      val_loss_list, val_acc_list = train(nb_epochs=10, name_dataset=task, batch_size=64)
-      with open(f'RoBERTa_{task}_val_loss.pickle', 'wb') as handle:
-        pickle.dump(val_loss_list, handle, protocol=pickle.HIGHEST_PROTOCOL)
-      with open(f'RoBERTa_{task}_val_acc.pickle', 'wb') as handle:
-        pickle.dump(val_acc_list, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    # for num_class, task in zip(nums_class, tasks):
+    model = RobertaModel.from_pretrained("roberta-base")
+    my_model = MyModel(trained_transformer=model, num_class=num_class, fine_tune_whole=True).to(device)
+    my_model = my_model.double()
+    criterion = torch.nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(my_model.parameters(), lr=2e-5, eps=1e-6)
+    val_loss_list, val_acc_list = train(nb_epochs=10, name_dataset=task, batch_size=64)
+    plot_confusion_matrix(my_model, task)
+
+      # with open(f'RoBERTa_{task}_val_loss.pickle', 'wb') as handle:
+      #   pickle.dump(val_loss_list, handle, protocol=pickle.HIGHEST_PROTOCOL)
+      # with open(f'RoBERTa_{task}_val_acc.pickle', 'wb') as handle:
+      #   pickle.dump(val_acc_list, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
