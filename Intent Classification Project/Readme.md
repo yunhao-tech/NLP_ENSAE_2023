@@ -29,11 +29,11 @@ The goal is to predict Y from D !
 |       Yeah                                                                              | backchanel            |
 |       It can be a pain .                                                                              | Declarative datetemnt |
 
-## Your Task:
+## The Task:
 
 Build an intent classifier. Several benchmark have been released involving english [1] or multlingual setting [2]
 
-## Your reads:
+## References:
 
 [1] Emile Chapuis,Pierre Colombo, Matthieu Labeau, and Chloé Clavel. Code-switched inspired losses for generic spoken
 dialog representations. EMNLP 2021
@@ -55,5 +55,6 @@ hierarchical multimodal approach to opinion mining. EMNLP 2020
 
 [7] Pierre Colombo, Wojciech Witon, Ashutosh Modi, James Kennedy, and Mubbasir Kapadia. Affect-driven dialog generation.
 NAACL 2019
+
 
 
